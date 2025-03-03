@@ -516,15 +516,15 @@ export const useElementStore = defineStore("ElementStore", {
 						throwOverlappingError("header");
 					} else if (
 						element.startY <
-							MainStore.page.height -
-								MainStore.page.footerHeight -
-								MainStore.page.marginTop -
-								MainStore.page.marginBottom &&
+						MainStore.page.height -
+						MainStore.page.footerHeight -
+						MainStore.page.marginTop -
+						MainStore.page.marginBottom &&
 						element.startY + element.height >
-							MainStore.page.height -
-								MainStore.page.footerHeight -
-								MainStore.page.marginTop -
-								MainStore.page.marginBottom
+						MainStore.page.height -
+						MainStore.page.footerHeight -
+						MainStore.page.marginTop -
+						MainStore.page.marginBottom
 					) {
 						throwOverlappingError("footer");
 					}
@@ -1225,13 +1225,18 @@ export const useElementStore = defineStore("ElementStore", {
 				"print_designer_footer",
 				"print_designer_settings",
 			]);
-			let settings = JSON.parse(printFormat.message.print_designer_settings);
+
+			let settings = printFormat.message?.print_designer_settings;
 			this.loadSettings(settings);
 
-			let ElementsBody = JSON.parse(printFormat.message.print_designer_body);
-			let ElementsAfterTable = JSON.parse(printFormat.message.print_designer_after_table);
-			const headers = JSON.parse(printFormat.message.print_designer_header);
-			const footers = JSON.parse(printFormat.message.print_designer_footer);
+			let ElementsBody = printFormat.message.print_designer_body
+
+			let ElementsAfterTable = printFormat.message.print_designer_after_table
+
+
+			const headers = printFormat.message.print_designer_header;
+			const footers = printFormat.message.print_designer_footer;
+
 			headers.forEach((header) => {
 				this.Headers.push(header);
 			});
